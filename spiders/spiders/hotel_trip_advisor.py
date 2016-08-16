@@ -10,14 +10,13 @@ class HotelTripAdvisorSpider(Spider):
     db_name = ""
     collection_name = 'hotel'
     start_urls = [
-        'http://www.tripadvisor.cn/',
+        'http://www.tripadvisor.cn/Hotels-g298184-Tokyo_Tokyo_Prefecture_Kanto-Hotels.html',
     ]
 
     def parse(self, response):
         self.logger.info('Hotel List Page URL: %s' % response.url)
         for href in response.xpath('//div[@class="listing_title"]/a/@href'):
             url = response.urljoin(href.extract())
-
             yield Request(url, self.parse_detail)
 
         next_page = response.xpath('//div[@class="unified pagination standard_pagination"]/a/@href')
