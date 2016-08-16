@@ -19,7 +19,7 @@ class HotelItem(Item):
     review_stars = Field()  # TripAdvisor的评论星级
     review_qty = Field()  # TripAdvisor的评论数
     rank = Field()  # 酒店排名: n/total
-    level_tags = Field()  # 酒店的标签
+    tags = Field()  # 酒店的标签
     stars = Field()  # 酒店星级
     award = Field()  # TripAdvisor的奖项
     url = Field()  # 爬取页面的链接
