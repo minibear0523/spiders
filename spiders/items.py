@@ -15,6 +15,7 @@ class HotelItem(Item):
     network = Field()  # 提供的网络状况
     room_type = Field()  # 提供的房间类型
     activity = Field()  # 提供的活动设施
+    service = Field()  # 酒店服务
     special = Field()  # 酒店特色
     review_stars = Field()  # TripAdvisor的评论星级
     review_qty = Field()  # TripAdvisor的评论数

@@ -17,6 +17,7 @@ class HotelTripAdvisorSpider(Spider):
         self.logger.info('Hotel List Page URL: %s' % response.url)
         for href in response.xpath('//div[@class="listing_title"]/a/@href'):
             url = response.urljoin(href.extract())
+
             yield Request(url, self.parse_detail)
 
         next_page = response.xpath('//div[@class="unified pagination standard_pagination"]/a/@href')
@@ -33,7 +34,7 @@ class HotelTripAdvisorSpider(Spider):
         item['url'] = response.url
 
         # 酒店名称
-        item['name'] = ''.join(response.xpath('//h1[@id="HEADING"]/text()')).extract().strip()
+        item['name'] = ''.join(response.xpath('//h1[@id="HEADING"]/text()').extract()).strip()
         name_en = response.xpath('//h1[@id="HEADING"]/span[@class="altHead"]/text()')
         if name_en:
             item['name_en'] = ''.join(name_en.extract()).strip()
@@ -81,7 +82,7 @@ class HotelTripAdvisorSpider(Spider):
 
             elif key == u'客房类型':
                 room_type = []
-                for room in v:
+                for room in value:
                     if room.strip():
                         room_type.append(room.strip())
                 item['room_type'] = room_type
@@ -105,10 +106,10 @@ class HotelTripAdvisorSpider(Spider):
                 value = amenity.xpath('.//div[contains(@class, "poi_card easyClear")]/div[@class="description_block"]')
                 for restaurant in value:
                     info = {}
-                    name = restaurant.xpath('./a[@class="poi_title"].text()').extract()
+                    name = restaurant.xpath('./a[@class="poi_title"]/text()').extract()
                     if name:
                         info['name'] = ''.join(name).strip()
-                    url = restaurant.xpath('./a[@class="poi_title"].@href').extract()
+                    url = restaurant.xpath('./a[@class="poi_title"]/@href').extract()
                     if url:
                         info['url'] = response.urljoin(''.join(url).strip())
                     stars = restaurant.xpath('.//span[contains(@class, "rate sprite-rating_s rating_s")]/img/@alt').extract()
@@ -117,7 +118,7 @@ class HotelTripAdvisorSpider(Spider):
                         pm = re.search(regx, stars[0])
                         if pm:
                             info['review_stars'] = pm.group(0)
-                    qty = restaurant.xapth('.//div[@class="rating"]/a/text()').extract()
+                    qty = restaurant.xpath('.//div[@class="rating"]/a/text()').extract()
                     if qty:
                         regx = r'([\d+|,]+)'
                         pm = re.search(regx, qty[0])
@@ -184,4 +185,8 @@ class HotelTripAdvisorSpider(Spider):
         item['tags'] = tags
 
         # 奖项
+        award = response.xpath('//a[starts-with(@href, "/TravelersChoice-Hotels")]')
+        if award:
+            item['award'] = '2016年旅行者之选奖得主'
 
+        yield item
