@@ -13,7 +13,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, B
 Base = declarative_base()
 
 class SpiderRule(Base):
-    """自定义爬虫的爬取规则"""
+    """自定义爬虫的爬取规则, 需要标明来源和同步的index"""
     __tablename__ = 'spider_rule'
 
     id = Column(Integer, primary_key=True)
@@ -27,5 +27,9 @@ class SpiderRule(Base):
     data_type = Column(String(30))
     # crontab定时规则
     schedule = Column(String(200))
+    # ElasticSearch中的index名称, 即MongoDB中的db_name
+    index_name = Column(String(50))
+    # ElasticSearch中的type名称, 即MongoDB中的collection_name
+    type_name = Column(String(50))
     # 规则是否生效
     enable = Column(Boolean, default=False)
