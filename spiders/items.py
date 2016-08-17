@@ -29,6 +29,7 @@ class HotelItem(Item):
 
 class RestaurantItem(Item):
     name = Field()
+    source = Field()
     classes = Field()  # 菜系
     address = Field()
     geo_location = Field()
