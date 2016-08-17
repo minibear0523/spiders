@@ -66,9 +66,10 @@ DOWNLOAD_DELAY = 1
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'spiders.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'spiders.pipelines.DuplicatesPipeline': 300,
+    'spiders.pipelines.MongoPipeline': 500
+}
 
 # MongoDB Settings
 MONGO_URI = 'mongodb://localhost:27017'
