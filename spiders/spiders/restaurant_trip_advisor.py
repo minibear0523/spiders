@@ -138,5 +138,9 @@ class RestaurantTripAdvisorSpider(Spider):
         award = response.xpath('//a[starts-with(@href, "/TravelersChoice-Restaurants")]')
         if award:
             item['award'] = '2016年旅行者之选奖获得主'
+        else:
+            award = response.xpath('//span[@class="taLnk text"]/text()').extract()
+            if award:
+                item['award'] = ''.join(award).strip()
 
         yield item
