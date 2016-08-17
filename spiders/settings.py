@@ -60,10 +60,10 @@ DOWNLOAD_DELAY = 1
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
-MYEXT_ENABLED = True
-#EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+# MYEXT_ENABLED = True
+# EXTENSIONS = {
+#    'spiders.extensions.SpiderClosedSyncExtension': None,
+# }
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
