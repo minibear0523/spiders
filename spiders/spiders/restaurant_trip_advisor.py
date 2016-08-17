@@ -72,7 +72,7 @@ class RestaurantTripAdvisorSpider(Spider):
         postal_code = response.xpath('//span[@class="postal-code"]/text()').extract()
         if postal_code:
             address_lst.append(postal_code[0].strip())
-        item['address'] = ''.join(address_lst)
+        item['address'] = ', '.join(address_lst).strip()
 
         # 地理坐标
         lat = response.xpath('//div[@class="mapContainer"]/@data-lat').extract()

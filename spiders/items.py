@@ -54,7 +54,7 @@ class AttractionItem(Item):
     source = Field()
     classes = Field()
     description = Field()
-    suggestion_duration = Field()  # 建议浏览时间
+    suggested_duration = Field()  # 建议浏览时间
     address = Field()
     geo_location = Field()
     telephone = Field()
