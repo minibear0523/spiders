@@ -51,6 +51,7 @@ class RestaurantItem(Item):
 class AttractionItem(Item):
     name = Field()
     name_en = Field()
+    source = Field()
     classes = Field()
     description = Field()
     suggestion_duration = Field()  # 建议浏览时间
