@@ -84,16 +84,21 @@ LOG_DATEFORMAT = '%m-%d %H:%M:%S'
 # LOG_FILE = '/home/minibear/log/scrapy/spiders.log'
 
 # PostgreSQL Settings
+# DATABASE = {
+#     'drivername': 'postgresql+psycopg2',
+#     'host': 'localhost',
+#     'port': '5432',
+#     'username': 'dbuser',
+#     'password': '900523',
+#     'database': 'spiders'
+# }
 DATABASE = {
     'drivername': 'postgresql+psycopg2',
-    'host': 'localohost',
+    'host': 'localhost',
     'port': '5432',
-    'username': 'dbuser',
+    'username': 'MiniBear0523',
     'password': '900523',
-    'database': 'spiders',
-    'query': {
-        'charset': 'utf-8'
-    }
+    'database': 'spiders'
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
