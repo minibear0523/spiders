@@ -83,6 +83,19 @@ LOG_FORMAT = '[%(name)s: %(levelname)s] %(asctime)s: %(message)s'
 LOG_DATEFORMAT = '%m-%d %H:%M:%S'
 # LOG_FILE = '/home/minibear/log/scrapy/spiders.log'
 
+# PostgreSQL Settings
+DATABASE = {
+    'drivername': 'postgresql+psycopg2',
+    'host': 'localohost',
+    'port': '5432',
+    'username': 'dbuser',
+    'password': '900523',
+    'database': 'spiders',
+    'query': {
+        'charset': 'utf-8'
+    }
+}
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
