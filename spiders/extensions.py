@@ -64,3 +64,4 @@ class SpiderClosedSyncExtension(object):
         在爬虫关闭的时候, 将已经储存在mongodb, 并通过mongo-connector同步到elasticsearch的数据进行reindex.
         """
         logger.info("Spider has closed.")
+        # TODO: 进行reindex工作
