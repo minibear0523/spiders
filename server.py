@@ -2,16 +2,31 @@
 from bottle import run, route, get, post, request, response
 from spiders.models import db_connect, SpiderRule, create_rules_table
 from sqlalchemy.orm import sessionmaker
+from contextlib import contextmanager
+import logging
 
 
 db = db_connect()
 Session = sessionmaker(bind=db)
 
+@contextmanager
+def session_scoped(Session):
+    """Provide a transactional scope around a series of operations"""
+    session = Session()
+    try:
+        yield session
+        session.commit()
+    except:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
 @get('/spider_rules')
 def spider_rule_list():
-    session = Session()
-    results = session.query(SpiderRule).all()
-    return results
+    with session_scoped(Session) as session:
+        results = session.query(SpiderRule).all()
+        return results
 
 @post('/spider_rule')
 def create_or_update_spider_rule():
@@ -27,10 +42,9 @@ def create_or_update_spider_rule():
     rule = SpiderRule(name=name, start_urls=start_urls, source_type=source_type,
                       data_type=data_type, schedule=schedule, index_name=index_name,
                       type_name=type_name, enable=enable)
-    session = Session()
-    session.add(rule)
-    session.commit()
-    return str(rule.id)
+    with session_scoped(Session) as session:
+        session.add(rule)
+        return str(rule.id)
 
 @post('/create_all_database')
 def create_all_database():
