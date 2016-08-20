@@ -7,11 +7,17 @@ import re
 
 class HotelTripAdvisorSpider(Spider):
     name = "hotel_trip_advisor"
-    db_name = ""
-    collection_name = 'hotel'
-    start_urls = [
-        'http://www.tripadvisor.cn/Hotels-g298184-Tokyo_Tokyo_Prefecture_Kanto-Hotels.html',
-    ]
+    # db_name = ""
+    # collection_name = 'hotel'
+    # start_urls = [
+    #     'http://www.tripadvisor.cn/Hotels-g298184-Tokyo_Tokyo_Prefecture_Kanto-Hotels.html',
+    # ]
+
+    def __init__(self, start_url, db_name, collection_name):
+        super(HotelTripAdvisorSpider, self).__init__()
+        self.start_urls = list(start_url)
+        self.db_name = db_name
+        self.collection_name = collection_name
 
     def parse(self, response):
         self.logger.info('Hotel List Page URL: %s' % response.url)
