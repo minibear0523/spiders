@@ -66,3 +66,17 @@ class AttractionItem(Item):
     award = Field()
     url = Field()
     update_date = Field()
+
+
+class JourneyItem(Item):
+    name = Field()
+    department_date = Field()  # 出发时间
+    duration = Field()  # 持续天数
+    description = Field()  # 旅行线路
+    author_link = Field()  # 作者在TripAdvisor上的页面链接
+    detail = Field()  # 旅行详情
+    hotels = Field()  # 居住的酒店
+    attractions = Field()  # 景点
+    restaurants = Field()  # 餐厅
+    url = Field()
+    update_date = Field()
