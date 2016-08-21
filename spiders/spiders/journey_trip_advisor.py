@@ -41,3 +41,13 @@ class JourneyTripAdvisorSpider(Spider):
             pm = re.search(regx, date_info)
             if pm:
                 item['duration'] = pm.group(1)
+        path = response.xpath('//div[@class="trip-path"]/text()').extract()
+        if path:
+            path = ''.join(path).strip()
+            colon_index = path.find(u'：')
+            if colon_index < 0:
+                self.logger.warning('[%s] has no trip path: %s' % (item['name'], response.url))
+            else:
+                item['path'] = path[colon_index+1:].split(',')
+
+        yield item
