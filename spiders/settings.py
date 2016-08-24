@@ -50,29 +50,28 @@ ITEM_PIPELINES = {
 
 # MongoDB Settings
 MONGO_URI = 'mongodb://localhost:27017'
-MONGO_DB = 'spider_data'
 
 # Logger Settings
 LOG_ENABLE = True
 LOG_ENCODINGS = 'utf-8'
 LOG_FORMAT = '[%(name)s: %(levelname)s] %(asctime)s: %(message)s'
 LOG_DATEFORMAT = '%m-%d %H:%M:%S'
-# LOG_FILE = '/home/minibear/log/scrapy/spiders.log'
+LOG_FILE = '/home/minibear/log/scrapy/spiders.log'
 
 # PostgreSQL Settings
-# DATABASE = {
-#     'drivername': 'postgresql+psycopg2',
-#     'host': 'localhost',
-#     'port': '5432',
-#     'username': 'dbuser',
-#     'password': '900523',
-#     'database': 'spiders'
-# }
 DATABASE = {
     'drivername': 'postgresql+psycopg2',
     'host': 'localhost',
     'port': '5432',
-    'username': 'MiniBear0523',
+    'username': 'dbuser',
     'password': '900523',
     'database': 'spiders'
 }
+# DATABASE = {
+#     'drivername': 'postgresql+psycopg2',
+#     'host': 'localhost',
+#     'port': '5432',
+#     'username': 'MiniBear0523',
+#     'password': '900523',
+#     'database': 'spiders'
+# }

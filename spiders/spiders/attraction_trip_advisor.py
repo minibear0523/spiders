@@ -13,6 +13,11 @@ class AttractionTripAdvisorSpider(Spider):
         "http://www.tripadvisor.cn/Attractions-g298184-Activities-Tokyo_Tokyo_Prefecture_Kanto.html",
     ]
 
+    def __init__(self, start_url, db_name):
+        self.db_name = db_name
+        self.start_urls = list(start_url)
+        super(AttractionTripAdvisorSpider, self).__init__()
+
     def parse(self, response):
         self.logger.info('Attraction List Page URL: %s' % response.url)
         for href in response.xpath('//div[@class="property_title"]/a/@href').extract():

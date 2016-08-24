@@ -12,6 +12,11 @@ class RestaurantTripAdvisorSpider(Spider):
     start_urls = [
         "http://www.tripadvisor.cn/Restaurants-g298184-Tokyo_Tokyo_Prefecture_Kanto.html"
     ]
+    
+    def __init__(self, start_url, db_name):
+        self.db_name = db_name
+        self.start_urls = list(start_url)
+        super(RestaurantTripAdvisorSpider, self).__init__()
 
     def parse(self, response):
         self.logger.info('Restaurant List Page URL: %s' % response.url)

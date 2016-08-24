@@ -23,7 +23,6 @@ class SpiderClosedSyncExtension(object):
         self.mongo_uri = mongo_uri
         self.es = Elasticsearch(hosts=self.Hosts)
 
-
     @classmethod
     def from_crawler(cls, crawler):
         if not crawler.settings.getbool("MYEXT_ENABLED"):
