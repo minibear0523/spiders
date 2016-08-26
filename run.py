@@ -9,7 +9,6 @@ from scrapy.crawler import CrawlerRunner
 from scrapy.utils.project import get_project_settings
 from scrapy.utils.log import configure_logging
 
-
 Mapping = {
     'hotel': {
         'trip_advisor': 'HotelTripAdvisorSpider'
@@ -21,6 +20,7 @@ Mapping = {
         'trip_advisor': 'AttractionTripAdvisorSpider'
     }
 }
+
 
 def get_mapping_spider(data_type, source_type):
     return Mapping[data_type][source_type]
@@ -43,7 +43,8 @@ if __name__ == '__main__':
     for rule in spider_rules:
         data_type = rule['data_type']
         source_type = rule['source_type']
-        runner.crawl(get_mapping_spider(data_type, source_type), start_url=rule['start_url'], db_name=rule['index_name'])
+        runner.crawl(get_mapping_spider(data_type, source_type), start_url=rule['start_url'],
+                     db_name=rule['index_name'])
 
     d = runner.join()
     d.addBoth(lambda _: reactor.stop())
